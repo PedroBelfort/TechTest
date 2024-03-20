@@ -1,0 +1,5 @@
+# Ignorar diretórios bin
+**/bin/
+
+# Ignorar diretórios obj
+**/obj/
