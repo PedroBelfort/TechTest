@@ -1,0 +1,8 @@
+# Ignorar diretórios bin
+**/bin/
+
+# Ignorar diretórios obj
+**/obj/
+
+# Ignorar a pasta .vs
+.vs/
