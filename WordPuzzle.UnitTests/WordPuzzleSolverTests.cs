@@ -20,7 +20,22 @@ namespace WordPuzzle.UnitTests
         }
 
 
-       
+        [Theory]
+        [InlineData("SAME", true )]
+        [InlineData("HJKUT", false)]
+        public void SearchWordOnDictionary_Should_Search(string word, bool isFound)
+        {
+            string completePath = @"D:\Git\TechTest\words-english.txt";
+            List<string> dictionary = new List<string>();
+            dictionary = File.ReadLines(completePath).ToList();
+
+            WordPuzzleSolver solver = new WordPuzzleSolver();
+           
+            var result =  solver.SearchWordOnDictionary(word, dictionary);
+
+            result.Should().Be(isFound);
+
+        }
 
     }
 }

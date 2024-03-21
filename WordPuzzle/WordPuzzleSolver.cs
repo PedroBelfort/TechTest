@@ -26,8 +26,9 @@ namespace WordPuzzle
             }
         }
 
-
-
-
+        public bool SearchWordOnDictionary(string word, List<string> dictionary)
+        {
+            return dictionary.Contains(word.ToLower());
+        }
     }
 }
