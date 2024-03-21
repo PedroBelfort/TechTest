@@ -6,8 +6,10 @@ namespace WordPuzzle.UnitTests
     {
         [Theory]
         [InlineData("SAME", "COST",0, "CAME")]
-     
-        public void Replace(string start, string end, int index, string expected)
+        [InlineData("CAME", "COST", 2, "CASE")]
+        [InlineData("CASE", "COST", 3, "CAST")]
+        [InlineData("CAST", "COST", 2, "CAST")]
+        public void ReplaceCharBySameIndex_Should_Replace(string start, string end, int index, string expected)
         {
             var reference = string.Empty;
 
@@ -16,6 +18,10 @@ namespace WordPuzzle.UnitTests
 
             reference.Should().Be(expected);
         }
+
+
+       
+
     }
 }
 
