@@ -14,7 +14,7 @@ public class Program
         string targetWord = "cost";
 
         WordPuzzleSolver wordPuzzleSolver = new WordPuzzleSolver();
-        var result =  wordPuzzleSolver.Solve("cost", "Same", lines);
+        var result =  wordPuzzleSolver.Solve("SAME", "COST", lines);
 
         Console.WriteLine(result);
 

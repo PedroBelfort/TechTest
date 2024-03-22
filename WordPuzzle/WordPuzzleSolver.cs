@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WordPuzzle
+﻿namespace WordPuzzle
 {
     public class WordPuzzleSolver
     {
@@ -17,12 +11,11 @@ namespace WordPuzzle
             }
             else
             {
-
                 return start;
             }
         }
 
-        public string ReplaceCharbyAlphabetIndex(string start, int index, List<string> dictionary)
+        public string ReplaceCharbyAlphabetIndex(string start, int index, List<string> dictionary, List<string> solution)
         {
 
             char[] alphabet = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
@@ -30,13 +23,13 @@ namespace WordPuzzle
 
             for (int j = 0; j < alphabet.Length; j++)
             {
-                
+
                 char[] referenceWord = start.ToCharArray();
                 referenceWord[index] = alphabet[j];
                 string newWord = new string(referenceWord);
 
-               
-                if (SearchWordOnDictionary(newWord, dictionary))
+
+                if (SearchWordOnDictionary(newWord, dictionary) && !solution.Contains(newWord))
                 {
                     return newWord;
                 }
@@ -50,20 +43,15 @@ namespace WordPuzzle
             return dictionary.Contains(word.ToLower());
         }
 
-
         public List<string> Solve(string start, string end, List<string> dictionary)
         {
-           
+            int index = 0;
             start = start.ToLower();
             end = end.ToLower();
-
             List<string> solution = new List<string>();
 
-            var index = 0;
-            bool checkAlphabet = true;
-
-            var reference = string.Empty;
-            var reference2 = string.Empty;
+            string reference = string.Empty;
+            bool searchOnAlphabet = true;
 
             solution.Add(start);
 
@@ -72,58 +60,40 @@ namespace WordPuzzle
                 if (start[index] != end[index])
                 {
                     reference = ReplaceCharBySameIndex(start, end, index);
-                }
 
-                if (SearchWordOnDictionary(reference, dictionary) && reference != start)
-                {
-                    solution.Add(reference);
-                    start = reference;
-                    checkAlphabet = false;
-                }
-
-                if (checkAlphabet)
-                {
-                    reference2 = ReplaceCharbyAlphabetIndex(start, index, dictionary);
-
-                        if (reference2 != string.Empty && reference2 != start)
+                    if (SearchWordOnDictionary(reference, dictionary) && reference != start)
+                    {
+                        if (!solution.Contains(reference))
                         {
-                            solution.Add(reference2);
-                            start = reference2;
+                            solution.Add(reference);
+                            start = reference;
+                            searchOnAlphabet = false;
                         }
+                    }
+
+                    if (searchOnAlphabet && reference != start)
+                    {
+                        reference = ReplaceCharbyAlphabetIndex(start, index, dictionary, solution);
+
+                        if (!solution.Contains(reference))
+                        {
+                            solution.Add(reference);
+                            start = reference;
+                        }
+                    }
+
+                    searchOnAlphabet = true;
                 }
 
-
-               
-
-                //checkAlphabet = true;
                 index++;
-
 
                 if (index == start.Length && start != end)
                 {
-                    if (checkAlphabet)
-                    {
-                        start = reference2;
-                        index = 0;
-                    } else
-                    {
-                        start = reference;
-                        index = 0;
-                    }
-                       
-                }
-
-                if(start == end)
-                {
-                    solution.Add(end);
+                    start = reference;
+                    index = 0;
                 }
             }
-
             return solution;
         }
-
-
-      
     }
-
 }
