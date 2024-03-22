@@ -1,16 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WordPuzzle;
 
-class Program
+public class Program
 {
     static void Main()
     {
         string completePath = @"D:\Git\TechTest\words-english.txt";
         List<string> lines = new List<string>();
 
-        lines = File.ReadLines(completePath).ToList(); ;
+        lines = File.ReadLines(completePath).ToList(); 
         string targetWord = "cost";
+
+        WordPuzzleSolver wordPuzzleSolver = new WordPuzzleSolver();
+        var result =  wordPuzzleSolver.Solve("cost", "Same", lines);
+
+        Console.WriteLine(result);
+
 
         // Substituir a primeira letra da start pela primeira letra da end.  SAME COST = CAME
         // Verifica se tem na lista. (SIM)
@@ -29,7 +36,7 @@ class Program
         // Substitui a segunda letra da referencia com a segunda da end. CAST COST = COST
         // As palavras são iguais (SIM)
         // FIM
- 
+
 
     }
 }

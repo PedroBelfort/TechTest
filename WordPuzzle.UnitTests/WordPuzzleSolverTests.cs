@@ -37,6 +37,24 @@ namespace WordPuzzle.UnitTests
 
         }
 
+
+        [Fact]
+        public void Solve_ShouldSolve()
+        {
+            var start = "Same";
+            var end = "Cost";
+
+            string completePath = @"D:\Git\TechTest\words-english.txt";
+            List<string> dictionary = new List<string>();
+            dictionary = File.ReadLines(completePath).ToList();
+
+            WordPuzzleSolver solver = new WordPuzzleSolver();
+            List<string> result =  solver.Solve(start, end, dictionary);
+
+
+
+        }
+
     }
 }
 
