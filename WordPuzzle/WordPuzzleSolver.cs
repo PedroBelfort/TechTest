@@ -1,46 +1,75 @@
-﻿namespace WordPuzzle
+﻿using LevenshteinDistance;
+using System;
+using System.Collections.Generic;
+
+namespace WordPuzzle
 {
     public class WordPuzzleSolver
     {
-        public string ReplaceCharBySameIndex(string start, string end, int index)
+        public string ReplaceCharBySameIndex(string start, string end, List<string> dictionary)
         {
-            if (index >= 0 && index < start.Length && index < end.Length)
+            if (start is null)
             {
-                string replaced = start.Substring(0, index) + end[index] + start.Substring(index + 1);
-                return replaced;
+                return string.Empty;
             }
-            else
+
+            for (int i = 0; i < start.Length; i++)
             {
-                return start;
-            }
-        }
+                string replaced = start.Substring(0, i) + end[i] + start.Substring(i + 1);
 
-        public string ReplaceCharbyAlphabetIndex(string start, int index, List<string> dictionary, List<string> solution)
-        {
-
-            char[] alphabet = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
-
-
-            for (int j = 0; j < alphabet.Length; j++)
-            {
-
-                char[] referenceWord = start.ToCharArray();
-                referenceWord[index] = alphabet[j];
-                string newWord = new string(referenceWord);
-
-
-                if (SearchWordOnDictionary(newWord, dictionary) && !solution.Contains(newWord))
+                if (replaced == end)
                 {
-                    return newWord;
+                    return replaced;
                 }
             }
 
             return string.Empty;
         }
 
-        public bool SearchWordOnDictionary(string word, List<string> dictionary)
+        public List<string> ReplaceCharByAlphabetIndex(string start, List<string> dictionary, List<string> solution)
+        {
+            var validWords = new List<string>();
+            char[] alphabet = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
+
+            for (int i = 0; i < start.Length; i++)
+            {
+                for (int j = 0; j < alphabet.Length; j++)
+                {
+                    char[] referenceWord = start.ToCharArray();
+                    referenceWord[i] = alphabet[j];
+                    string newWord = new string(referenceWord);
+
+                    if (SearchWordInDictionary(newWord, dictionary) && !solution.Contains(newWord))
+                    {
+                        validWords.Add(newWord);
+                    }
+                }
+            }
+
+            return validWords;
+        }
+
+        public bool SearchWordInDictionary(string word, List<string> dictionary)
         {
             return dictionary.Contains(word.ToLower());
+        }
+
+        static string FindClosestWord(string reference, List<string> words)
+        {
+            int minDistance = int.MaxValue;
+            string closestWord = null;
+
+            foreach (string word in words)
+            {
+                int distance = Levenshtein.Distance(reference, word);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    closestWord = word;
+                }
+            }
+
+            return closestWord;
         }
 
         public List<string> Solve(string start, string end, List<string> dictionary)
@@ -50,49 +79,43 @@
             end = end.ToLower();
             List<string> solution = new List<string>();
 
-            string reference = string.Empty;
-            bool searchOnAlphabet = true;
-
             solution.Add(start);
 
             while (start != end && index <= start.Length)
             {
-                if (start[index] != end[index])
+                var wordList = ReplaceCharByAlphabetIndex(start, dictionary, solution);
+
+                var bestWord = FindClosestWord(end, wordList);
+
+                var wordSameIndex = ReplaceCharBySameIndex(bestWord, end, dictionary);
+
+                if (wordSameIndex != string.Empty)
                 {
-                    reference = ReplaceCharBySameIndex(start, end, index);
-
-                    if (SearchWordOnDictionary(reference, dictionary) && reference != start)
-                    {
-                        if (!solution.Contains(reference))
-                        {
-                            solution.Add(reference);
-                            start = reference;
-                            searchOnAlphabet = false;
-                        }
-                    }
-
-                    if (searchOnAlphabet && reference != start)
-                    {
-                        reference = ReplaceCharbyAlphabetIndex(start, index, dictionary, solution);
-
-                        if (!solution.Contains(reference))
-                        {
-                            solution.Add(reference);
-                            start = reference;
-                        }
-                    }
-
-                    searchOnAlphabet = true;
+                    solution.Add(bestWord);
+                    solution.Add(wordSameIndex);
+                    break;
                 }
+
+                if (bestWord == null)
+                {
+                    solution.Add("No intermediate word found");
+                    solution.Add(end);
+                    break;
+                }
+
+                solution.Add(bestWord);
+
+                start = bestWord;
 
                 index++;
 
                 if (index == start.Length && start != end)
                 {
-                    start = reference;
+                    start = bestWord;
                     index = 0;
                 }
             }
+
             return solution;
         }
     }
