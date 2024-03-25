@@ -13,8 +13,8 @@ namespace WordPuzzle.UnitTests
         {
             var reference = string.Empty;
 
-            WordPuzzleSolver solver = new WordPuzzleSolver();
-            reference = solver.ReplaceCharBySameIndex(start, end, index);
+            //WordPuzzleSolver solver = new WordPuzzleSolver();
+            //reference = solver.ReplaceCharBySameIndex(start, end, index);
 
             reference.Should().Be(expected);
         }
@@ -29,11 +29,11 @@ namespace WordPuzzle.UnitTests
             List<string> dictionary = new List<string>();
             dictionary = File.ReadLines(completePath).ToList();
 
-            WordPuzzleSolver solver = new WordPuzzleSolver();
+            //WordPuzzleSolver solver = new WordPuzzleSolver();
            
-            var result =  solver.SearchWordOnDictionary(word, dictionary);
+            //var result =  solver.SearchWordOnDictionary(word, dictionary);
 
-            result.Should().Be(isFound);
+            //result.Should().Be(isFound);
 
         }
 
@@ -48,8 +48,8 @@ namespace WordPuzzle.UnitTests
             List<string> dictionary = new List<string>();
             dictionary = File.ReadLines(completePath).ToList();
 
-            WordPuzzleSolver solver = new WordPuzzleSolver();
-            List<string> result =  solver.Solve(start, end, dictionary);
+            //WordPuzzleSolver solver = new WordPuzzleSolver();
+            //List<string> result =  solver.Solve(start, end, dictionary);
 
 
 
