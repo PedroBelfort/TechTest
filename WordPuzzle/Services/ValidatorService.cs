@@ -21,7 +21,7 @@ namespace WordPuzzle.Services
 
         public void WordNotExistOnDictionary(string word, List<string> dictionary)
         {
-            word.ToUpper();
+            word.ToLower();
 
             if (!dictionary.Any(w => string.Equals(w, word, StringComparison.OrdinalIgnoreCase)))
             {

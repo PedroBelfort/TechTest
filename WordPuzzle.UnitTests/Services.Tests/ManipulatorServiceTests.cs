@@ -32,10 +32,10 @@ namespace WordPuzzle.UnitTests.Services.Tests
         public void ReplaceCharByAlphabetIndex_ShouldReturnValidWords()
         {
             // Arrange
-            string start = "cat";
-            List<string> dictionary = new List<string> { "bat", "cot", "cat", "cab", "mat" };
-            List<string> solution = new List<string> { "cot" };
-            var expectedValidWords = new List<string> { "bat", "cab", "mat" };
+            string start = "cata";
+            List<string> dictionary = new List<string> { "bate", "cota", "cata", "cabe", "mati" };
+            List<string> solution = new List<string> { "cota" };
+            var expectedValidWords = new List<string> { "bate", "cabe", "mati" };
             this.manipulatorServiceMock.Setup(x => x.ReplaceCharByAlphabetIndex(start, dictionary, solution)).Returns(expectedValidWords);
             var manipulatorService = this.manipulatorServiceMock.Object;
 
@@ -51,17 +51,17 @@ namespace WordPuzzle.UnitTests.Services.Tests
         public void ReplaceCharBySameIndex_ShouldReturnReplacedWord()
         {
             // Arrange
-            string start = "cat";
-            string end = "cut";
-            List<string> dictionary = new List<string> { "bat", "cot", "cat", "cab", "mat" };
-            this.manipulatorServiceMock.Setup(x => x.ReplaceCharBySameIndex(start, end, dictionary)).Returns("cut");
+            string start = "cata";
+            string end = "cute";
+            List<string> dictionary = new List<string> { "bate", "cota", "cata", "cabe", "mati" };
+            this.manipulatorServiceMock.Setup(x => x.ReplaceCharBySameIndex(start, end, dictionary)).Returns("cute");
             var manipulatorService = this.manipulatorServiceMock.Object;
 
             // Act
             string replacedWord = manipulatorService.ReplaceCharBySameIndex(start, end, dictionary);
 
             // Assert
-            replacedWord.Should().Be("cut");
+            replacedWord.Should().Be("cute");
         }
 
         [Fact]
@@ -69,8 +69,8 @@ namespace WordPuzzle.UnitTests.Services.Tests
         {
             // Arrange
             string start = null;
-            string end = "cut";
-            List<string> dictionary = new List<string> { "bat", "cot", "cat", "cab", "mat" };
+            string end = "cute";
+            List<string> dictionary = new List<string> { "bate", "cota", "cata", "cabe", "mati" };
             this.manipulatorServiceMock.Setup(x => x.ReplaceCharBySameIndex(start, end, dictionary)).Returns(string.Empty);
             var manipulatorService = this.manipulatorServiceMock.Object;
 
@@ -85,9 +85,9 @@ namespace WordPuzzle.UnitTests.Services.Tests
         public void ReplaceCharBySameIndex_ShouldReturnEmptyString_WhenNoReplacementFound()
         {
             // Arrange
-            string start = "dog";
-            string end = "cat";
-            List<string> dictionary = new List<string> { "bat", "cot", "cat", "cab", "mat" };
+            string start = "dogg";
+            string end = "cata";
+            List<string> dictionary = new List<string> { "bate", "cota", "cata", "cabe", "mati" };
             this.manipulatorServiceMock.Setup(x => x.ReplaceCharBySameIndex(start, end, dictionary)).Returns(string.Empty);
             var manipulatorService = this.manipulatorServiceMock.Object;
 
