@@ -12,8 +12,8 @@ namespace WordPuzzle.Services
     {
         public void InvalidLengthWord(string word)
         {
-            word = word.ToLower();
-            if(word.Length > 4)
+            word.ToLower();
+            if(word.Length != 4)
             {
                 throw new WordValidationException($"The word '{word}' does not have the required length of 4 characters.");
             }
@@ -21,8 +21,9 @@ namespace WordPuzzle.Services
 
         public void WordNotExistOnDictionary(string word, List<string> dictionary)
         {
-            word = word.ToLower();
-            if (!dictionary.Contains(word))
+            word.ToUpper();
+
+            if (!dictionary.Any(w => string.Equals(w, word, StringComparison.OrdinalIgnoreCase)))
             {
                 throw new WordValidationException($"The word '{word}' does not exist in the dictionary.");
             }
