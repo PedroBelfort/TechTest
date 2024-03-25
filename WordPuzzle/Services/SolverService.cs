@@ -12,6 +12,7 @@ namespace WordPuzzle.Services
 
         private readonly IManipulatorService wordManipulator;
 
+
         public SolverService(IManipulatorService wordManipulator)
         {
             this.wordManipulator = wordManipulator;
@@ -19,6 +20,7 @@ namespace WordPuzzle.Services
 
         public List<string> Solve(string start, string end, List<string> dictionary)
         {
+
             int index = 0;
             start = start.ToLower();
             end = end.ToLower();

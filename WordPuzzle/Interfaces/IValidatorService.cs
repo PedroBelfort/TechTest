@@ -8,7 +8,7 @@ namespace WordPuzzle.Interfaces
 {
     public interface IValidatorService
     {
-        void invalidLengthWord(string word);
-        void wordNotExistOnDictionary(string word);
+        void InvalidLengthWord(string word);
+        void WordNotExistOnDictionary(string word, List<string> dictionary);
     }
 }
