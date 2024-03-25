@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics;
 using WordPuzzle.Interfaces;
 using WordPuzzle.Services;
 
@@ -6,17 +7,19 @@ public class Program
 {
     static void Main()
     {
-        string completePath = @"D:\Git\TechTest\words-english.txt";
-        List<string> lines = new List<string>();
-
-        lines = File.ReadLines(completePath).ToList();
-
         var serviceProvider = new ServiceCollection()
                 .AddTransient<IManipulatorService, ManipulatorService>()
                 .AddTransient<ISolverService, SolverService>()
+                .AddTransient<IFileService, FileService>()  
                 .BuildServiceProvider();
 
         var wordPuzzleSolver = serviceProvider.GetService<ISolverService>();
+
+        var fileService = serviceProvider.GetService<IFileService>();
+
+        var lines = fileService.ReadFile(@"D:\Git\TechTest\words-english.txt");
+
+        Console.WriteLine("Welcomme :");
 
         List<string> solution = wordPuzzleSolver.Solve("same", "case", lines);
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WordPuzzle.Interfaces
 {
-    public interface IValidationService
+    public interface IValidatorService
     {
         void invalidLengthWord(string word);
         void wordNotExistOnDictionary(string word);
