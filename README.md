@@ -21,7 +21,7 @@
     wordList = [tame, name, dame, lame, game, came, fame, some, sane, sale, sage, sake, safe, save]
     ```
 
-2. Filter the *wordList* to find the word closest to the end word using the Levenshtein Distance algorithm, imported from the *LevenshteinDistance* library. The word closest to the end word is named *bestWord*.
+2. Filter the *wordList* to find the word closest to the end word using the [***Levenshtein Distance***](https://en.wikipedia.org/wiki/Levenshtein_distance) algorithm, imported from the [*LevenshteinDistance* library](https://www.nuget.org/packages/LevenshteinDistance/1.0.0) . The word closest to the end word is named *bestWord*.
 
     ```
     bestWord = came
@@ -36,6 +36,23 @@
 
 ## App Functions
 
+1 - The application operates as a console application that prompts the user to input the start word and the end word.
+![read inputs](https://github.com/PedroBelfort/TechTest/blob/main/WordPuzzle/Assets/step-1.png)  <br>
 
+2 - Upon receiving the inputs, the app processes them and prints the intermediate words on the console. Additionally, it exports a solution file (solution.txt) to the Desktop. <br>
+![process](https://github.com/PedroBelfort/TechTest/blob/main/WordPuzzle/Assets/step-2.png)  <br>
 
+3 - The solution file is exported to the Desktop. <br>
+![file exported](https://github.com/PedroBelfort/TechTest/blob/main/WordPuzzle/Assets/step3.png)  <br>
 
+4 - The user can exit the application at any time by typing "bye".
+![bye](https://github.com/PedroBelfort/TechTest/blob/main/WordPuzzle/Assets/step4.png)  <br>
+
+5 - The user can clear the application's data at any time by typing "clear".
+![bye](https://github.com/PedroBelfort/TechTest/blob/main/WordPuzzle/Assets/step5.png)  <br>
+
+6- When no intermediate word is found, the application prints "No intermediate word found".
+![not found](https://github.com/PedroBelfort/TechTest/blob/main/WordPuzzle/Assets/step-6.png)  <br>
+
+7 - The application throws an exception when a business rule is violated.
+![exception](https://github.com/PedroBelfort/TechTest/blob/main/WordPuzzle/Assets/step-7.png)
