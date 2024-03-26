@@ -35,6 +35,7 @@
   
 
 ## App Functions
+<b> ***-The application loads the 'words-english.txt' file upon startup  inside Assets folder***
 
 1 - The application operates as a console application that prompts the user to input the start word and the end word.
 ![read inputs](https://github.com/PedroBelfort/TechTest/blob/main/WordPuzzle/Assets/step-1.png)  <br>
@@ -56,3 +57,5 @@
 
 7 - The application throws an exception when a business rule is violated.
 ![exception](https://github.com/PedroBelfort/TechTest/blob/main/WordPuzzle/Assets/step-7.png)
+
+
