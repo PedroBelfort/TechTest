@@ -82,7 +82,12 @@ namespace WordPuzzle
                             Console.WriteLine($"\nError: {ex.Message}");
                         }
                     }
-
+                   
+                    Console.WriteLine("\nEnter the File name you want to export");
+                    var answerFileName = Console.ReadLine();
+                    if (answerFileName == string.Empty)
+                        answerFileName = "result";
+                   
                     Console.WriteLine("Processing....");
                     Console.Clear();
 
@@ -91,7 +96,7 @@ namespace WordPuzzle
                     var path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
                     var fileServiceExport = this.serviceProvider.GetService<IFileService>();
-                    fileServiceExport.ExportFile(solution, $"{path}/{startWord}-{endWord}.txt");
+                    fileServiceExport.ExportFile(solution, $"{path}/{answerFileName}.txt");
 
                     Console.WriteLine($"\n{startWord} => {endWord}:\n");
                     foreach (var word in solution)
