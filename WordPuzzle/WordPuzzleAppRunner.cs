@@ -51,8 +51,8 @@ namespace WordPuzzle
 
                 try
                 {
-                    validatorService.InvalidLengthWord(startWord);
-                    validatorService.WordNotExistOnDictionary(startWord, dictionary);
+                    validatorService.ValidateLengthWord(startWord);
+                    validatorService.ValidateWordExistOnDictionary(startWord, dictionary);
 
                     string endWord = null;
                     bool isValidEndWord = false;
@@ -73,8 +73,8 @@ namespace WordPuzzle
 
                         try
                         {
-                            validatorService.InvalidLengthWord(endWord);
-                            validatorService.WordNotExistOnDictionary(endWord, dictionary);
+                            validatorService.ValidateLengthWord(endWord);
+                            validatorService.ValidateWordExistOnDictionary(endWord, dictionary);
                             isValidEndWord = true;
                         }
                         catch (WordValidationException ex)

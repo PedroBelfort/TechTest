@@ -31,7 +31,7 @@ namespace WordPuzzle.Services
         public List<string> ReplaceCharByAlphabetIndex(string start, List<string> dictionary, List<string> solution)
         {
             var validWords = new List<string>();
-            char[] alphabet = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
+            char[] alphabet = dictionary.SelectMany(s => s).Distinct().ToArray();
 
             for (int i = 0; i < start.Length; i++)
             {
