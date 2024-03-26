@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WordPuzzle")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+addf2bd73df6ecc4da99880d12d7e6487a261b2f")]
 [assembly: System.Reflection.AssemblyProductAttribute("WordPuzzle")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WordPuzzle")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

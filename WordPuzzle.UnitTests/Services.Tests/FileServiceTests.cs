@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Moq;
+using System.IO;
 using WordPuzzle.Interfaces;
 
 namespace WordPuzzle.UnitTests.Services.Tests
@@ -97,6 +98,25 @@ namespace WordPuzzle.UnitTests.Services.Tests
             // Assert
             action.Should().Throw<FileNotFoundException>()
                 .WithMessage($"The file '{path}' was not found.");
+        }
+
+        [Fact]
+        public void GetFilePath_ShouldReturnsCorrectPath()
+        {
+            // Arrange
+            string baseDirectory = @"C:\Test\WordPuzzle\bin\Debug\net8.0\";
+            string filePath = "Assets/words-english.txt";
+            string modifiedPath = @"C:\Test\WordPuzzle\";
+            string expectedPath = Path.Combine(modifiedPath, filePath);
+            var fileService = fileServiceMock.Object;
+           
+            fileServiceMock.Setup(m => m.GetFilePath()).Returns(expectedPath);
+
+            // Act
+            string actualPath = fileService.GetFilePath();
+
+            // Assert
+            actualPath.Should().Be(expectedPath);
         }
     }
 }

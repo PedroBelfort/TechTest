@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using WordPuzzle.Exceptions;
 using WordPuzzle.Interfaces;
 using WordPuzzle.Services;
@@ -20,9 +22,18 @@ namespace WordPuzzle
             var fileService = this.serviceProvider.GetService<IFileService>();
             var validatorService = this.serviceProvider.GetService<IValidatorService>();
 
-            var lines = fileService.ReadFile(@"D:\Git\TechTest\words-english.txt");
+            var dictionary = new List<string>();
+            bool runApp = true;
 
-            while (true)
+            var filePath = fileService.GetFilePath();
+            dictionary = fileService.ReadFile(filePath);
+
+            if(dictionary.Count == 0)
+            {
+                runApp = false;
+            }
+
+            while (runApp)
             {
                 string startWord = null;
 
@@ -41,7 +52,7 @@ namespace WordPuzzle
                 try
                 {
                     validatorService.InvalidLengthWord(startWord);
-                    validatorService.WordNotExistOnDictionary(startWord, lines);
+                    validatorService.WordNotExistOnDictionary(startWord, dictionary);
 
                     string endWord = null;
                     bool isValidEndWord = false;
@@ -63,7 +74,7 @@ namespace WordPuzzle
                         try
                         {
                             validatorService.InvalidLengthWord(endWord);
-                            validatorService.WordNotExistOnDictionary(endWord, lines);
+                            validatorService.WordNotExistOnDictionary(endWord, dictionary);
                             isValidEndWord = true;
                         }
                         catch (WordValidationException ex)
@@ -75,7 +86,7 @@ namespace WordPuzzle
                     Console.WriteLine("Processing....");
                     Console.Clear();
 
-                    List<string> solution = wordPuzzleSolver.Solve(startWord, endWord, lines);
+                    List<string> solution = wordPuzzleSolver.Solve(startWord, endWord, dictionary);
 
                     var path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 

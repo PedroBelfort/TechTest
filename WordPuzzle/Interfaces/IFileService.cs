@@ -10,6 +10,8 @@ namespace WordPuzzle.Interfaces
     {
         List<string> ReadFile(string path);
         void ExportFile(List<string> result, string path);
-        
+        string GetFilePath();
+
+
     }
 }
