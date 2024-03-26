@@ -51,7 +51,7 @@ namespace WordPuzzle.Services
             return validWords;
         }
 
-        public string ReplaceCharBySameIndex(string start, string end, List<string> dictionary)
+        public string ReplaceCharBySameIndex(string start, string end)
         {
             if (start is null)
             {

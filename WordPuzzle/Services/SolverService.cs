@@ -31,7 +31,7 @@ namespace WordPuzzle.Services
 
                 var bestWord = this.wordManipulator.FindClosestWord(end, wordList);
 
-                var wordSameIndex = this.wordManipulator.ReplaceCharBySameIndex(bestWord, end, dictionary);
+                var wordSameIndex = this.wordManipulator.ReplaceCharBySameIndex(bestWord, end);
 
                 if (wordSameIndex != string.Empty)
                 {

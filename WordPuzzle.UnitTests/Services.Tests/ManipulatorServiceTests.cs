@@ -54,11 +54,11 @@ namespace WordPuzzle.UnitTests.Services.Tests
             string start = "cata";
             string end = "cute";
             List<string> dictionary = new List<string> { "bate", "cota", "cata", "cabe", "mati" };
-            this.manipulatorServiceMock.Setup(x => x.ReplaceCharBySameIndex(start, end, dictionary)).Returns("cute");
+            this.manipulatorServiceMock.Setup(x => x.ReplaceCharBySameIndex(start, end)).Returns("cute");
             var manipulatorService = this.manipulatorServiceMock.Object;
 
             // Act
-            string replacedWord = manipulatorService.ReplaceCharBySameIndex(start, end, dictionary);
+            string replacedWord = manipulatorService.ReplaceCharBySameIndex(start, end);
 
             // Assert
             replacedWord.Should().Be("cute");
@@ -71,11 +71,11 @@ namespace WordPuzzle.UnitTests.Services.Tests
             string start = null;
             string end = "cute";
             List<string> dictionary = new List<string> { "bate", "cota", "cata", "cabe", "mati" };
-            this.manipulatorServiceMock.Setup(x => x.ReplaceCharBySameIndex(start, end, dictionary)).Returns(string.Empty);
+            this.manipulatorServiceMock.Setup(x => x.ReplaceCharBySameIndex(start, end)).Returns(string.Empty);
             var manipulatorService = this.manipulatorServiceMock.Object;
 
             // Act
-            string replacedWord = manipulatorService.ReplaceCharBySameIndex(start, end, dictionary);
+            string replacedWord = manipulatorService.ReplaceCharBySameIndex(start, end);
 
             // Assert
             replacedWord.Should().BeEmpty();
@@ -88,11 +88,11 @@ namespace WordPuzzle.UnitTests.Services.Tests
             string start = "dogg";
             string end = "cata";
             List<string> dictionary = new List<string> { "bate", "cota", "cata", "cabe", "mati" };
-            this.manipulatorServiceMock.Setup(x => x.ReplaceCharBySameIndex(start, end, dictionary)).Returns(string.Empty);
+            this.manipulatorServiceMock.Setup(x => x.ReplaceCharBySameIndex(start, end)).Returns(string.Empty);
             var manipulatorService = this.manipulatorServiceMock.Object;
 
             // Act
-            string replacedWord = manipulatorService.ReplaceCharBySameIndex(start, end, dictionary);
+            string replacedWord = manipulatorService.ReplaceCharBySameIndex(start, end);
 
             // Assert
             replacedWord.Should().BeEmpty();

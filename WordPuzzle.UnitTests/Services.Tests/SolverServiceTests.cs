@@ -24,7 +24,7 @@ namespace WordPuzzle.UnitTests.Services.Tests
             var expectedSolution = new List<string> { "test" };
             manipulatorServiceMock.Setup(m => m.ReplaceCharByAlphabetIndex(start, dictionary, It.IsAny<List<string>>())).Returns(new List<string>());
             manipulatorServiceMock.Setup(m => m.FindClosestWord(end, It.IsAny<List<string>>())).Returns(end);
-            manipulatorServiceMock.Setup(m => m.ReplaceCharBySameIndex(end, end, dictionary)).Returns(string.Empty);
+            manipulatorServiceMock.Setup(m => m.ReplaceCharBySameIndex(end, end)).Returns(string.Empty);
             var solverService = new SolverService(manipulatorServiceMock.Object);
 
             // Act
@@ -44,7 +44,7 @@ namespace WordPuzzle.UnitTests.Services.Tests
             var expectedSolution = new List<string> { "test", "No intermediate word found", "four" };
             manipulatorServiceMock.Setup(m => m.ReplaceCharByAlphabetIndex(start, dictionary, It.IsAny<List<string>>())).Returns(new List<string>());
             manipulatorServiceMock.Setup(m => m.FindClosestWord(end, It.IsAny<List<string>>())).Returns((string)null);
-            manipulatorServiceMock.Setup(m => m.ReplaceCharBySameIndex(It.IsAny<string>(), end, dictionary)).Returns(string.Empty);
+            manipulatorServiceMock.Setup(m => m.ReplaceCharBySameIndex(It.IsAny<string>(), end)).Returns(string.Empty);
             var solverService = new SolverService(manipulatorServiceMock.Object);
 
             // Act
@@ -66,7 +66,7 @@ namespace WordPuzzle.UnitTests.Services.Tests
                 .Returns(new List<string> { "best" })
                 .Returns(new List<string>());
             manipulatorServiceMock.Setup(m => m.FindClosestWord(end, It.IsAny<List<string>>())).Returns(end);
-            manipulatorServiceMock.Setup(m => m.ReplaceCharBySameIndex(end, end, dictionary)).Returns(string.Empty);
+            manipulatorServiceMock.Setup(m => m.ReplaceCharBySameIndex(end, end)).Returns(string.Empty);
             var solverService = new SolverService(manipulatorServiceMock.Object);
 
             // Act
