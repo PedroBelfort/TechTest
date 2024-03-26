@@ -37,7 +37,7 @@
 ## App Functions
 <b> ***-The application loads the 'words-english.txt' file upon startup  inside Assets folder***
 
-1 - The application operates as a console application that prompts the user to input the start word and the end word.
+1 - The application operates as a console application that prompts the user to input the start word and the end word.<br>
 ![read inputs](https://github.com/PedroBelfort/TechTest/blob/main/WordPuzzle/Assets/step-1.png)  <br>
 
 2 - Upon receiving the inputs, the app processes them and prints the intermediate words on the console. Additionally, it exports a solution file (solution.txt) to the Desktop. <br>
