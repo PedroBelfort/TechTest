@@ -35,7 +35,7 @@
   
 
 ## App Functions
-<b> ***-The application loads the 'words-english.txt' file upon startup  inside Assets folder***
+ ***-The application loads the 'words-english.txt' file upon startup  inside Assets folder***  
 
 1 - The application operates as a console application that prompts the user to input the start word, end word and the file name.<br>
 ![read inputs](https://github.com/PedroBelfort/TechTest/blob/main/WordPuzzle/Assets/step-1.png)  <br>
@@ -57,5 +57,44 @@
 
 7 - The application throws an exception when a business rule is violated.
 ![exception](https://github.com/PedroBelfort/TechTest/blob/main/WordPuzzle/Assets/step-7.png)
+
+## Solution Packages
+
+The solution contains two projects:
+
+**A) WordPuzzle** (Console Application project, .NET 8)
+   - LevenshteinDistance Version="1.0.0"
+   - Microsoft.Extensions.DependencyInjection Version="8.0.0"
+   
+**B) WordPuzzle.UnitTests** (Xunit, .NET 8)
+   - coverlet.collector Version="6.0.0"
+   - FluentAssertions Version="6.12.0"
+   - Microsoft.NET.Test.Sdk Version="17.8.0"
+   - Moq Version="4.20.70"
+   - xunit Version="2.5.3"
+   - xunit.runner.visualstudio Version="2.5.3"
+
+## Solution Structure
+
+**WordPuzzle** is split into 5 different folders and 2 files Program.cs and WordPuzzleAppRunner:
+
+- **Assets**: Holds the words-english.txt file used as a dictionary for the solution and the Readme image files.
+- **Configurations**: Holds the ServiceConfigurator.cs class, responsible for Dependency Injection registration.
+- **Exception**: Holds the personalized exceptions used in the project.
+- **Interfaces**: Holds the contracts used in the project.
+- **Services**: Holds the contract implementations.
+- **Program.cs**: Responsible for initializing the Dependency Injection container and running the application.
+- **WordPuzzleAppRunner**: Holds the solution flow, working as a controller.
+
+**WordPuzzle.UnitTests**: This project has only one folder Services.Tests that holds the unit tests for the services implementations.
+
+## Development history 
+
+Upon initially assessing the problem description, I mistakenly assumed it would be straightforward to resolve. I proceeded by creating a console project and drafting a pseudo-algorithm to tackle the issue. This initial approach, documented in the early commits of the development history, appeared to address simpler cases effectively. However, upon implementing the solution in a single class within a structured solution, I realized its limitations—it only worked for basic scenarios, and there was no assurance that all dictionary word possibilities had been thoroughly tested.
+
+Subsequently, I delved into research on determining word proximity and came across the Levenshtein Distance algorithm, conveniently available for use through a C# library. Integrating the Levenshtein Distance algorithm into my solution significantly expedited the process. This integration led to the creation of the initial version with a structured solution, denoted by the 1.0.0 tag.
+
+Shortly afterward, I devoted myself to refactoring the solution, embracing SOLID principles and refining console input handling. This refinement process resulted in subsequent versions marked by the 1.1.0 and 1.2.0 tags.
+
 
 
