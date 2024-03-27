@@ -1,9 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using WordPuzzle.Exceptions;
 using WordPuzzle.Interfaces;
-using WordPuzzle.Services;
 
 namespace WordPuzzle
 {

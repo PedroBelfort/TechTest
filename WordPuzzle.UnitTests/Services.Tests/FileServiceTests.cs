@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using Moq;
-using System.IO;
 using WordPuzzle.Interfaces;
 
 namespace WordPuzzle.UnitTests.Services.Tests

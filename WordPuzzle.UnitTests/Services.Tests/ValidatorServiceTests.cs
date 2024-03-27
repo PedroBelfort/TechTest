@@ -2,7 +2,6 @@
 using Moq;
 using WordPuzzle.Exceptions;
 using WordPuzzle.Interfaces;
-using WordPuzzle.Services;
 
 namespace WordPuzzle.UnitTests.Services.Tests
 {
